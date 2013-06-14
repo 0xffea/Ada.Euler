@@ -1,23 +1,23 @@
-with Ada.Text_IO; use Ada.Text_IO;
-with Ada.Assertions; use Ada.Assertions;
-with Ada.Real_Time; use Ada.Real_Time;
-
+with Ada.Text_IO;
+with Ada.Assertions;
 
 procedure Euler_001 is
-   
+   use Ada.Text_IO;
+   use Ada.Assertions;
+
    function E001_01 (N : Natural) return Natural is
-      Sum : Natural := 0;
    begin
-      for I in 1 .. (N-1) loop
-	 if I mod 3 = 0 then
-	    Sum := Sum + I;
-	 elsif I mod 5 = 0 then
-	    Sum := Sum + I;
-	 end if;
-      end loop;
-      return Sum;
+      return Sum : Natural := 0 do
+	for I in 1 .. (N-1) loop
+	   if (I rem 3 = 0) then
+	      Sum := Sum + I;
+	   elsif (I rem 5 = 0) then
+	      Sum := Sum + I;
+	   end if;
+	end loop;
+      end return;
    end E001_01;
-   
+
    function E001_02 (N : Natural) return Natural is
       Sum : Natural := 0;
    begin
@@ -30,7 +30,7 @@ procedure Euler_001 is
 	    Sum := Sum + I;
 	 end loop;
       end;
-	
+
       declare
 	 I : Natural := 0;
       begin
@@ -42,30 +42,10 @@ procedure Euler_001 is
       end;
       return Sum;
    end E001_02;
-   
+
 begin
    Assert(23 = E001_01(10));
    Assert(23 = E001_02(10));
-   
-   declare
-      Sum : Natural;
-      Start_Time : Time := Clock;
-      End_Time : Time;
-   begin
-      Sum := E001_01(100_000);
-      End_Time := Clock;
-      Put_Line(Duration'Image (To_Duration(End_Time - Start_Time)));
-   end;
-   
-   declare
-      Sum : Natural;
-      Start_Time : Time := Clock;
-      End_Time : Time;
-   begin
-      Sum := E001_02(100_000);
-      End_Time := Clock;
-      Put_Line(Duration'Image (To_Duration(End_Time - Start_Time)));
-   end;
-   
-   Put_Line(Natural'Image (E001_01(10)));
+
+   Put_Line(Natural'Image (E001_01(1_000)));
 end Euler_001;
